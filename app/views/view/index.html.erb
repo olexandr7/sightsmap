@@ -1,0 +1,79 @@
+<div id="mymap">
+
+
+<script>
+// Map definition
+//-----------------------------------------------------------------------------------------
+var mymap = L.map('mymap', 'zoomControl').setView([43.8562586, 18.4130763], 14);
+
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a> | Icons by <a href="https://thenounproject.com">Noun Project</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+}).addTo(mymap);
+//-----------------------------------------------------------------------------------------
+
+///Map objects
+//----------------------------------------------------------------------------------------
+
+
+
+
+
+
+//Icons
+//###############################################################
+var sniperIcon = L.icon({
+  iconUrl: 'https://preview.ibb.co/jDVEnb/sniper.png',
+  iconSize:     [70, 60],
+  iconAnchor:   [25, 25],
+});
+
+var gunIcon = L.icon({
+  iconUrl: 'https://preview.ibb.co/bP360w/gun.png',
+  iconSize:     [70, 70],
+  iconAnchor:   [25, 25],
+});
+
+
+var hospitalIcon = L.icon({
+  iconUrl: 'https://image.ibb.co/dckfSb/hospital.png',
+  iconSize:     [70, 70],
+  iconAnchor:   [25, 25],
+});
+
+//###############################################################
+
+
+//Pop-ups
+//###############################################################
+var hospitalPopup = "<a href='http://www.nytimes.com/1992/10/18/world/a-sarajevo-hospital-works-in-horror-beyond-anything.html' target='_blank'> <h3>A Sarajevo Hospital Works In Horror Beyond Anything</h3>  </a>  <br><br>  <img src='https://cdn.theatlantic.com/assets/media/img/photo/2012/04/20-years-since-the-bosnian-war/b22_06160564/main_900.jpg?14238565' alt='Kosevo hospital room' height='300px' width='400px'/> ";
+
+
+var sniperPopup = "<a href='http://www.nytimes.com/1992/09/26/world/racing-through-snipers-alley-on-ride-to-sarajevo.html' target='_blank'> <h3>Racing through Sniper Alley</h3>  </a>  <br><br>  <img src='https://ichef-1.bbci.co.uk/news/640/media/images/59521000/jpg/_59521919_sniper-640x630.jpg' alt='Sniper alley' height='300px' width='450px'/> ";
+
+
+var gunPopup = "<a href='https://www.atlasobscura.com/places/sarajevo-bobsleigh-track' target='_blank'> <h3>A war-torn Olympic relic is being overtaken by graffiti and nature. </h3>  </a>  <br><br>  <img src='http://cdn.yomadic.com/wp-content/uploads/track-bob-sled-sarajevo.jpg?x93737' alt='Abandoned track' height='350px' width='450px'/> ";
+
+
+var Options =
+        {
+        'maxWidth': '500',
+        'className' : 'custom'
+        }
+
+//Markers
+//###############################################################
+var sniperalleymarker = L.marker([43.855207, 18.395932], {icon: sniperIcon}).addTo(mymap).bindPopup(sniperPopup,Options).on('click', clickZoom);
+var trebevicmarker = L.marker([43.840244, 18.447272], {icon: gunIcon}).addTo(mymap).bindPopup(gunPopup,Options).on('click', clickZoom);
+var kosevomarker = L.marker([43.869444, 18.415833], {icon: hospitalIcon}).addTo(mymap).bindPopup(hospitalPopup,Options).on('click', clickZoom);
+
+//----------------------------------------------------------------------------------------
+
+function clickZoom(e) {
+	map.setView(e.target.getLatLng(),15);
+}
+
+
+
+</script>
